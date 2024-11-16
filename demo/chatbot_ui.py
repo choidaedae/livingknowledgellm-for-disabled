@@ -33,12 +33,12 @@ class Chat:
           })
           return response_content
       
-chat = Chat(system="You are a helpful assistant.")
+chat = Chat(system="You are a helpful assistant.") # Define the system prompt
 
 def respond(message, chat_history):
     bot_message = chat.prompt(content=message)
     chat_history.append((message, bot_message))
-    return "", chat_history
+    return "", chat_history # chat 기록을 저장 가능, 추후 활용 가능
 
 
 with gr.Blocks() as demo:
