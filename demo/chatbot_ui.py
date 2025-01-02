@@ -1,9 +1,13 @@
-import openai
+import os, openai
 from getpass import getpass
 from typing import Optional
 import gradio as gr
 
-openai.api_key = getpass('Enter your OpenAI API Key: ')
+# 프롬프트 읽어오기
+with open("../prompts/v2.2.txt", "r", encoding="utf-8") as f:
+    system_prompt = f.read()
+
+openai.api_key = os.environ.get('OPENAI_API_KEY')
 
 class Chat:
 
@@ -23,7 +27,7 @@ class Chat:
               "content": content
           })
           response = openai.ChatCompletion.create(
-              model="gpt-3.5-turbo",
+              model="gpt-4o",
               messages=self.messages
           )
           response_content = response["choices"][0]["message"]["content"]
@@ -33,7 +37,7 @@ class Chat:
           })
           return response_content
       
-chat = Chat(system="You are a helpful assistant.") # Define the system prompt
+chat = Chat(system=system_prompt) # Define the system prompt
 
 def respond(message, chat_history):
     bot_message = chat.prompt(content=message)
