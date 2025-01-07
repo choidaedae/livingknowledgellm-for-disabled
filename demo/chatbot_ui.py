@@ -1,17 +1,64 @@
-import os
-import json
-import openai
-from typing import Optional
 import gradio as gr
+import openai
 from datetime import datetime
 import base64
+import os
+import json
+from typing import Optional
+from dotenv import load_dotenv
 
+# .env 파일에서 환경 변수 로드
+load_dotenv()
 # 프롬프트 읽어오기
 with open("../prompts/v2.2.txt", "r", encoding="utf-8") as f:
     system_prompt = f.read()
 
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
+# 심리검사 완료 상태 플래그
+is_test_completed = [False]  # 상태를 저장하는 플래그
+
+# CES-D 문항 정의
+questions = [
+    "비교적 잘 지냈다.",
+    "상당히 우울했다.",
+    "모든 일들이 힘들게 느껴졌다.",
+    "잠을 설쳤다(잠을 잘 이루지 못했다).",
+    "세상에 홀로 있는 듯한 외로움을 느꼈다.",
+    "큰 불만 없이 생활했다.",
+    "사람들이 나에게 차갑게 대하는 것 같았다.",
+    "마음이 슬펐다.",
+    "사람들이 나를 싫어하는 것 같았다.",
+    "도무지 뭘 해 나갈 엄두가 나지 않았다."
+]
+
+# 심리검사 결과 처리 함수
+def validate_and_translate(*responses):
+    if None in responses:
+        return "⚠️ 모든 문항에 답변하세요!", gr.update(visible=True), gr.update(visible=False)
+
+    # 응답 결과를 기반으로 점수 계산
+    translation = [[1,0,0,0,0,1,0,0,0,0],[0,1,1,1,1,0,1,1,1,1]]
+    print("response", responses)
+    total_score = sum([translation[0 if response=="아니다" else 1][index] for index, response in enumerate(responses)])
+    if total_score < 3:
+        result = "우울 관련 정서적 문제를 호소하는 정도가 일반 사람들과 비슷한 수준입니다."
+        # 검사 통과 → 채팅 UI로 전환
+        return (
+            f"총 점수: {total_score}\n해석: {result}",
+            gr.update(visible=False),  # 심리검사 UI 숨김
+            gr.update(visible=True),   # 채팅 UI 표시
+        )
+    else:
+        result = "우울과 관련된 증상들을 유의한 수준으로 보고하였습니다. 스트레스가 가중되면, 우울 증상이 확산될 수 있으니 주의가 필요합니다."
+        # 검사 실패 → 심리검사 UI 유지
+        return (
+            f"총 점수: {total_score}\n해석: {result}\n⚠️ 검사 결과로 인해 채팅 기능이 제한됩니다.",
+            gr.update(visible=True),  # 심리검사 UI 유지
+            gr.update(visible=False), # 채팅 UI 숨김
+        )
+
+# ChatGPT 클래스
 class Chat:
     def __init__(self, system: Optional[str] = None):
         self.system = system
@@ -51,8 +98,9 @@ class Chat:
             f.write("")  # 파일 비우기
 
 chat = Chat(system=system_prompt)
-
+# ChatGPT 응답 처리 함수
 def respond(message, chat_history):
+    # ChatGPT 응답 처리
     # 이미지 경로
     bot_profile_path = "../assets/bot_profile.png"
     
@@ -76,7 +124,6 @@ def respond(message, chat_history):
 
     return "", chat_history
 
-
 def download_log():
     """현재 채팅 기록 JSON 파일 다운로드"""
     if chat.log_file and os.path.exists(chat.log_file):
@@ -99,26 +146,49 @@ def clear_chat(chat_history):
     chat.clear_log()
     return []
 
-# Gradio Blocks UI 구성
+
+# Gradio UI 구성
 with gr.Blocks() as demo:
-    with gr.Row():
+    with gr.Tab("CES-D 검사", visible=True) as test_ui:
+        gr.Markdown("""### CESD-10-D 우울 척도 검사\n
+아래의 문항을 잘 읽으신 후, 지난 1주 동안 당신이 느끼고 행동한 것을 가장 잘 나타낸다고 생각되는 답변에 표시하여 주십시오. 한 문항도 빠짐없이 답해 주시기 바랍니다. 
+                    
+- 0: 아니다
+- 1: 그렇다
+""")
+        response_inputs = []
+        for question in questions:
+            response_inputs.append(gr.Radio(choices=["아니다", "그렇다"], label=question))
+
+        submit_btn = gr.Button("제출")
+        result = gr.Textbox(label="검사 결과")
+
+    # 채팅 UI
+    with gr.Column(visible=False) as chat_ui:
         gr.Markdown("# MoodBin - 당신의 감정을 공유하세요 🌈")
 
-    gr.Markdown("한국고등교육재단 인재림 3기 (황경서, 박소혜, 배서현, 최대현) - SOUL Project의 연구 결과물입니다.")
+        gr.Markdown("한국고등교육재단 인재림 3기 (황경서, 박소혜, 배서현, 최대현) - SOUL Project의 연구 결과물입니다.")
 
-    chatbot = gr.Chatbot(type='messages')  # 'messages' 타입 사용
-    msg = gr.Textbox(label="메시지를 입력하세요", placeholder="무엇이든 물어보세요!")
-    load_file = gr.File(label="채팅 불러오기")
-    download_output = gr.File(label="채팅 로그 다운로드")
+        chatbot = gr.Chatbot(type='messages')  # 'messages' 타입 사용
+        msg = gr.Textbox(label="메시지를 입력하세요", placeholder="무엇이든 물어보세요!")
+        load_file = gr.File(label="채팅 불러오기")
+        download_output = gr.File(label="채팅 로그 다운로드")
 
-    with gr.Row():
-        clear_btn = gr.Button("채팅 비우기", variant="secondary")
-        download_btn = gr.Button("채팅 로그 다운로드", variant="success")
+        with gr.Row():
+            clear_btn = gr.Button("채팅 비우기", variant="secondary")
+            download_btn = gr.Button("채팅 로그 다운로드", variant="success")
 
-    # 이벤트 연결
-    msg.submit(respond, [msg, chatbot], [msg, chatbot])
-    clear_btn.click(clear_chat, inputs=[chatbot], outputs=chatbot)
-    download_btn.click(download_log, inputs=None, outputs=download_output)
-    load_file.upload(load_chat, inputs=[load_file], outputs=[chatbot])  # 채팅 로그 불러오기
+        # 이벤트 연결
+        msg.submit(respond, [msg, chatbot], [msg, chatbot])
+        clear_btn.click(clear_chat, inputs=[chatbot], outputs=chatbot)
+        download_btn.click(download_log, inputs=None, outputs=download_output)
+        load_file.upload(load_chat, inputs=[load_file], outputs=[chatbot])  # 채팅 로그 불러오기
+
+    # 심리검사 결과 및 UI 업데이트
+    submit_btn.click(
+        validate_and_translate,
+        inputs=response_inputs,
+        outputs=[result, test_ui, chat_ui],
+    )
 
 demo.launch(debug=True, share=True)
