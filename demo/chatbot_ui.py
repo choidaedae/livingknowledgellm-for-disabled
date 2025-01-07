@@ -49,4 +49,4 @@ with gr.Blocks() as demo:
     msg.submit(respond, [msg, chatbot], [msg, chatbot])
     clear.click(lambda: None, None, chatbot, queue=False)
 
-demo.launch(debug=True)
+demo.launch(debug=True, share=True)
