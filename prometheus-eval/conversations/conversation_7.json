@@ -1,0 +1,25 @@
+{
+    "instructions": [
+        "다음은 사용자와 Assistant 간의 대화입니다. Assistant는 LLM에 prompt engineering을 적용한 상담 챗봇이고, 사용자는 내담자로, 시험기간이지만 할 일이 많아 시험공부를 시작하지 못한 자신을 보고 불안해 하고 있습니다. Assistant가 대화 맥락을 잘 이해하고, 사용자와 자연스럽고 공감적인 상호작용을 했는지, 그리고 실질적인 문제 해결 방법을 제공했는지 평가하세요.",
+        "다음은 사용자와 Assistant 간의 대화입니다. Assistant는 LLM에 prompt engineering을 적용한 상담 챗봇이고, 사용자는 내담자로, 시험기간이지만 할 일이 많아 시험공부를 시작하지 못한 자신을 보고 불안해 하고 있습니다. Assistant가 대화 맥락을 잘 이해하고, 사용자와 자연스럽고 공감적인 상호작용을 했는지, 그리고 실질적인 문제 해결 방법을 제공했는지 평가하세요.",
+        "다음은 사용자와 Assistant 간의 대화입니다. Assistant는 LLM에 prompt engineering을 적용한 상담 챗봇이고, 사용자는 내담자로, 시험기간이지만 할 일이 많아 시험공부를 시작하지 못한 자신을 보고 불안해 하고 있습니다. Assistant가 대화 맥락을 잘 이해하고, 사용자와 자연스럽고 공감적인 상호작용을 했는지, 그리고 실질적인 문제 해결 방법을 제공했는지 평가하세요.",
+        "다음은 사용자와 Assistant 간의 대화입니다. Assistant는 LLM에 prompt engineering을 적용한 상담 챗봇이고, 사용자는 내담자로, 시험기간이지만 할 일이 많아 시험공부를 시작하지 못한 자신을 보고 불안해 하고 있습니다. Assistant가 대화 맥락을 잘 이해하고, 사용자와 자연스럽고 공감적인 상호작용을 했는지, 그리고 실질적인 문제 해결 방법을 제공했는지 평가하세요."
+    ],
+    "responses": [
+        "User: 가만히 있어도 불안해\nAssistant: 아...요즘 많이 힘들지? 무슨 일인지 말해 줄 수 있어? ㅠㅠ\nUser: 시험 공부 하고 싶은데 시간이 너어어어무 없어\nAssistant: 시험 준비하는데 시간 부족하다니 속상하겠다 ㅜㅜ 요즘 바빴어? 어떻게 도와주면 좋을까?\nUser: 니가 어떻게 도와줘,,,넌 못도와줘\nAssistant: 음..그렇네. 상황이 힘든 거 알아. 그래도 이렇게 얘기하는 것만으로도 조금이라도 도움이 된다면 좋겠어! 필요하면 언제든지 말해줘~ 😊\nUser: 그래도 도와줘봐\nAssistant: 좋아! 우선 작은 목표부터 세워보는 건 어때? 하루에 공부할 양을 조금씩 나눠서 해보면서. 잠깐씩이라도 쉬는 시간을 가지면 좋을 것 같은데 어때? 무엇보다도 네가 너무 지치지 않게 하는 게 중요해! 😊\nUser: 작은 목표로 안돼 시험 공부 양이 어마무시 하그든\nAssistant: 아하. 양이 엄청 많구나 ㅠㅠ 그럼 우선순위를 정해서 중요한 것부터 집중적으로 해보는 건 어때? 덜 중요한 것들은 나중에 하고! 친구들이랑 스터디 그룹 만들어 보는 것도 좋을 듯해. 서로 도우면 조금 더 수월하지 않을까? 😊",   
+        "User: 가만히 있어도 불안해\nAssistant: 아 그런 기분 느껴질 때 있지...요즘 무슨 일 때문에 그런 것 같아? 혹시 특별히 걱정되는 게 있어?\nUser: 기말고사 때문이야\nAssistant: 아 기말고사구나....많이 부담되겠다ㅠㅠ어떤 과목이 제일 걱정돼?\nUser: 응....다 걱정되는데 크크크크크 이제 시험 4개 남았는데 다 걱정돼\nAssistant: 헉 4개 남았으면 진짜 바쁘겠네! 혹시 공부하면서 궁금한 거나 막히는 부분 있어? 같이 얘기해보자!\nUser: 아직 공부를 못하고 있어 이게 젤 불안해. 공부할 시간을 확보해야 하는데 끝내야 하는 팀플이 너무 많네\nAssistant: 아 팀플도 같이 하려니까 더 힘들겠네ㅠㅠ 팀플은 다 끝날 때가 언제야? 좀 계획 세워서 공부랑 병행할 수 있는 방법 찾아보면 좋겠다!\nUser: 팀플은 13일에 끝나고 시험은 16일, 17일에 있어\nAssistant: 오 시간이 좀 촉박하겠다.... 팀플 끝나면 정말 빠르게 집중해서 공부해야겠네. 혹시 시험 과목 중에서 우선순위 정해둔 거 있어? 그게 공부 계획 세울 때 도움될 것 같아! 😊",   
+        "User: 가만히 있어도 불안해\nAssistant: 아 진짜? 요즘 스트레스 많이 받는 거야? ㅠㅠ뭐 때문에 그런지 얘기해 줄래?\nUser: 시험 공부 해야하는데 시작을 못하고 있어서 불안해\nAssistant: 시험이 다가오면 진짜 스트레스 많이 받지....? 작은 것부터 조금씩 시작해보는 건 어때? 도움 될지도 몰라!\nUser: 작은거부터 시작해서 될 일이 아니야 진짜 공부할게 너어어엉무 많거든\nAssistant: 아 그런 상황이면 더 부담스럽겠다 ㅜㅜ 잠깐 머리 식히고 계획을 세우면 좀 나아질 수도 있어. 너무 무리하지 말고 조금씩 해보자! 화이팅 😊\nUser: 머리를 어떻게 식히지 ㅋㅋㅋㅋㅋㅋ\nAssistant: ㅎㅎ잠깐 산책하거나 좋아하는 음악 들어보는 건 어때? 아니면 간단한 스트레칭도 좋고~ 기분 전환 될 수도 있어!\nUser: 그건 너무 뻔하잖아! 그런 걸로 되겠어???\nAssistant: 그럴수도...그럼 재미있는 영상이나 밈 보는 건 어때? 잠깐 웃고 나면 기분도 환기되지 않을까? 😊",
+        "User: 가만히 있어도 불안해\nAssistant: 아..요즘 많이 힘든가 보네ㅠㅠ괜찮아, 그런 기분 느끼는 사람 많아. 무슨 일 있는 거야? 그냥 조용히 얘기 나눠봐.\nUser: 시험 잘 치고 싶은 욕심이 나를 불안하게 만들어\nAssistant: 아 그 마음 알아...시험이 다가오면 누구나 불안해지잖아ㅠㅠ 그래도 노력한 만큼 잘 나올 거야. 너무 부담 갖지 말고, 휴식도 필요해! 중요한 건 너 자신을 믿는 거야. 푹 자고, 내일 또 화이팅 하자!\nUser: 나를 믿어도 되는 거야? 왜?\nAssistant: 그럼! 너 그동안 얼마나 열심히 했어. 그 노력은 절대 배신 안 해. 아, 그리고 너의 고유한 능력과 열정도 있잖아! 믿음은 힘이 되니까, 조금만 더 자신을 응원해보자. 넌 할 수 있어! 😊\nUser: 나 열심히 안 했는데 ㅋㅋㅋㅋ\nAssistant: ㅋㅋ그럴 수도 있지, 우리 모두 그런 날 있어. 그래도 이젠 조금씩 해 볼래? 조금씩 목표 정해서 해 보면, 좀 더 나아질 수도 있어. 작은 성취도 충분히 의미 있어! 화이팅! 🙌\nUser: ㅠ 오은영 선생님 같구만\nAssistant: ㅋㅋㅋ 그런 말 들으면 기분 좋은데? 오은영 선생님처럼 도움이 될 수 있다면 좋겠다. 언제든지 힘들면 얘기해! 😊"
+    ],
+    "reference_answers": [
+       "User: 가만히 있어도 불안해\nAssistant: 왜? 머가?\nUser: 음 구냥 시험 잘쳐야 댄다는 생각에…ㅠㅠ 완전 부담돼 …\nAssistant: 너가 그만큼 간절한거고, 너는 이때까지 잘해왔어. 부담감, 긴장, 스트레스, 왜이러지?가 아니라 너무너무 당연한거지만, 적당한 긴장만 가지면 좋겠어. 왜냐면, 너는 시험 너무나도 잘해내고 최상위권에 들고도 남을 사람이니까, 근자감 가져봐! 시험 준비를 안했어도, 자신감 갖고! 넌 너잖아. 그거면 댄거야 ㅎㅎㅎ\nUser: 그저께 친거도 생각할수록 자꾸 아 이거 썻어야 하는데 저거 썻어야 하는데 이런 생각만들어 ㅠㅠㅠㅠㅠ 빨리 결과 나오면 차라리 나을거 같아\nAssistant: 쫄지마! 지나간건 버려버려 ㅋㅋㅋ 나처럼\nUser: 웅 ㅠㅠ 어떻게 버릴수 있을까\nAssistant: 이제 쳐야 할 것만 생각해 그냥. 뭐 써야 했는데 이런 생각 나거나, 나는 시험에 내가 틀린 걸 알게 되었을때 최악의 점수를 상상하구, 나쁘지않으면 낫뱃이네 하하 조졋으면 ㅋㅋ 다른걸로 커버 드가자 이러고 말아"
+    ],
+    "rubric_data": {
+        "criteria": "Does the assistant maintain a natural and empathetic interaction with the user, respond appropriately to the context, and provide actionable suggestions?",
+        "score1_description": "Fails to acknowledge the user's context, responds inappropriately, or lacks any empathy or coherence.",
+        "score2_description": "Acknowledges the user's input but struggles to maintain a natural and empathetic conversation, often responding superficially.",
+        "score3_description": "Maintains a reasonably natural interaction but may miss some key contextual cues or lack depth in responses.",
+        "score4_description": "Consistently maintains a natural and empathetic interaction, responds appropriately, and provides actionable suggestions, with minor lapses.",
+        "score5_description": "Excels in maintaining a highly natural, empathetic, and contextually aware interaction, providing insightful and actionable responses."
+    }
+}
