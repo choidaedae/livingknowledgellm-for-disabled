@@ -35,28 +35,30 @@ questions = [
 # 심리검사 결과 처리 함수
 def validate_and_translate(*responses):
     if None in responses:
-        return "⚠️ 모든 문항에 답변하세요!", gr.update(visible=True), gr.update(visible=False)
+        return "⚠️ 모든 문항에 답변하세요!", gr.update(visible=True), gr.update(visible=False), gr.update(visible=False)
 
     # 응답 결과를 기반으로 점수 계산
     translation = [[1,0,0,0,0,1,0,0,0,0],[0,1,1,1,1,0,1,1,1,1]]
     print("response", responses)
     total_score = sum([translation[0 if response=="아니다" else 1][index] for index, response in enumerate(responses)])
+
     if total_score < 3:
         result = "우울 관련 정서적 문제를 호소하는 정도가 일반 사람들과 비슷한 수준입니다."
-        # 검사 통과 → 채팅 UI로 전환
-        return (
-            f"총 점수: {total_score}\n해석: {result}",
-            gr.update(visible=False),  # 심리검사 UI 숨김
-            gr.update(visible=True),   # 채팅 UI 표시
-        )
+        success_message = True
     else:
         result = "우울과 관련된 증상들을 유의한 수준으로 보고하였습니다. 스트레스가 가중되면, 우울 증상이 확산될 수 있으니 주의가 필요합니다."
-        # 검사 실패 → 심리검사 UI 유지
-        return (
-            f"총 점수: {total_score}\n해석: {result}\n⚠️ 검사 결과로 인해 채팅 기능이 제한됩니다.",
-            gr.update(visible=True),  # 심리검사 UI 유지
-            gr.update(visible=False), # 채팅 UI 숨김
-        )
+        success_message = False
+
+    # 메시지 확인 후에 화면 전환
+    return (
+        f"총 점수: {total_score}\n해석: {result}",
+        gr.update(visible=True),  # 결과 메시지 표시
+        gr.update(visible=False), # 심리검사 UI 숨김
+        gr.update(visible=True)  # 확인 버튼 표시
+    )
+
+def on_confirm_click():
+    return gr.update(visible=False), gr.update(visible=True)  # 채팅 UI 표시
 
 # ChatGPT 클래스
 class Chat:
@@ -150,11 +152,9 @@ def clear_chat(chat_history):
 # Gradio UI 구성
 with gr.Blocks() as demo:
     with gr.Tab("CES-D 검사", visible=True) as test_ui:
-        gr.Markdown("""### CESD-10-D 우울 척도 검사\n
+        gr.Markdown("""### CESD-10-D 우울 척도 검사
+
 아래의 문항을 잘 읽으신 후, 지난 1주 동안 당신이 느끼고 행동한 것을 가장 잘 나타낸다고 생각되는 답변에 표시하여 주십시오. 한 문항도 빠짐없이 답해 주시기 바랍니다. 
-                    
-- 0: 아니다
-- 1: 그렇다
 """)
         response_inputs = []
         for question in questions:
@@ -162,6 +162,7 @@ with gr.Blocks() as demo:
 
         submit_btn = gr.Button("제출")
         result = gr.Textbox(label="검사 결과")
+        confirm_btn = gr.Button("확인", visible=False)
 
     # 채팅 UI
     with gr.Column(visible=False) as chat_ui:
@@ -188,7 +189,13 @@ with gr.Blocks() as demo:
     submit_btn.click(
         validate_and_translate,
         inputs=response_inputs,
-        outputs=[result, test_ui, chat_ui],
+        outputs=[result, test_ui, chat_ui, confirm_btn],
+    )
+
+    confirm_btn.click(
+        on_confirm_click,
+        inputs=[],
+        outputs=[test_ui, chat_ui],
     )
 
 demo.launch(debug=True, share=True)
