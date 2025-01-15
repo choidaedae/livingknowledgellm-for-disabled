@@ -151,6 +151,7 @@ def clear_chat(chat_history):
 
 # Gradio UI 구성
 with gr.Blocks() as demo:
+    # 검사 UI
     with gr.Tab("CES-D 검사", visible=True) as test_ui:
         gr.Markdown("""### CESD-10-D 우울 척도 검사
 
@@ -166,25 +167,37 @@ with gr.Blocks() as demo:
 
     # 채팅 UI
     with gr.Column(visible=False) as chat_ui:
-        gr.Markdown("# MoodBin - 당신의 감정을 공유하세요 🌈")
-
-        gr.Markdown("한국고등교육재단 인재림 3기 (황경서, 박소혜, 배서현, 최대현) - SOUL Project의 연구 결과물입니다.")
-
-        chatbot = gr.Chatbot(type='messages')  # 'messages' 타입 사용
-        msg = gr.Textbox(label="메시지를 입력하세요", placeholder="무엇이든 물어보세요!")
-        load_file = gr.File(label="채팅 불러오기")
-        download_output = gr.File(label="채팅 로그 다운로드")
-
         with gr.Row():
-            clear_btn = gr.Button("채팅 비우기", variant="secondary")
-            download_btn = gr.Button("채팅 로그 다운로드", variant="success")
+            with gr.Column():
+                gr.Markdown("# MoodBin - 당신의 감정을 공유하세요 🌈")
 
-        # 이벤트 연결
-        msg.submit(respond, [msg, chatbot], [msg, chatbot])
-        clear_btn.click(clear_chat, inputs=[chatbot], outputs=chatbot)
-        download_btn.click(download_log, inputs=None, outputs=download_output)
-        load_file.upload(load_chat, inputs=[load_file], outputs=[chatbot])  # 채팅 로그 불러오기
+                gr.Markdown("한국고등교육재단 인재림 3기 (황경서, 박소혜, 배서현, 최대현) - SOUL Project의 연구 결과물입니다.")
 
+                chatbot = gr.Chatbot(type='messages')  # 'messages' 타입 사용
+                msg = gr.Textbox(label="메시지를 입력하세요", placeholder="무엇이든 물어보세요!")
+                load_file = gr.File(label="채팅 불러오기")
+                download_output = gr.File(label="채팅 로그 다운로드")
+
+                with gr.Row():
+                    clear_btn = gr.Button("채팅 비우기", variant="secondary")
+                    download_btn = gr.Button("채팅 로그 다운로드", variant="success")
+
+                # 이벤트 연결
+                msg.submit(respond, [msg, chatbot], [msg, chatbot])
+                clear_btn.click(clear_chat, inputs=[chatbot], outputs=chatbot)
+                download_btn.click(download_log, inputs=None, outputs=download_output)
+                load_file.upload(load_chat, inputs=[load_file], outputs=[chatbot])  # 채팅 로그 불러오기
+            # 명상 및 요가 링크를 제공하는 사이드바 추가
+            with gr.Column(scale=0.3):
+                gr.Markdown("""## 🌿 명상 & 요가
+
+스트레스를 관리하고 마음의 평화를 찾는 데 도움이 되는 리소스를 확인하세요:
+
+- [Headspace 명상 가이드](https://www.headspace.com/)
+- [Down Dog 요가 앱](https://www.downdogapp.com/)
+- [Calm: 명상과 수면](https://www.calm.com/)
+
+""")
     # 심리검사 결과 및 UI 업데이트
     submit_btn.click(
         validate_and_translate,
