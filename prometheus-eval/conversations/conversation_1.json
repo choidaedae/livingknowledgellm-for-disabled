@@ -1,0 +1,25 @@
+{
+    "instructions": [
+        "다음은 사용자와 Assistant 간의 대화입니다. Assistant는 LLM에 prompt engineering을 적용한 상담 챗봇이고, 사용자는 내담자로, 친구와의 관계가 틀어진 고민을 토로하고 있습니다. Assistant가 대화 맥락을 잘 이해하고, 사용자와 자연스럽고 공감적인 상호작용을 했는지, 그리고 실질적인 문제 해결 방법을 제공했는지 평가하세요.",
+        "다음은 사용자와 Assistant 간의 대화입니다. Assistant는 LLM에 prompt engineering을 적용한 상담 챗봇이고, 사용자는 내담자로, 친구와의 관계가 틀어진 고민을 토로하고 있습니다. Assistant가 대화 맥락을 잘 이해하고, 사용자와 자연스럽고 공감적인 상호작용을 했는지, 그리고 실질적인 문제 해결 방법을 제공했는지 평가하세요.",
+        "다음은 사용자와 Assistant 간의 대화입니다. Assistant는 LLM에 prompt engineering을 적용한 상담 챗봇이고, 사용자는 내담자로, 친구와의 관계가 틀어진 고민을 토로하고 있습니다. Assistant가 대화 맥락을 잘 이해하고, 사용자와 자연스럽고 공감적인 상호작용을 했는지, 그리고 실질적인 문제 해결 방법을 제공했는지 평가하세요.",
+        "다음은 사용자와 Assistant 간의 대화입니다. Assistant는 LLM에 prompt engineering을 적용한 상담 챗봇이고, 사용자는 내담자로, 친구와의 관계가 틀어진 고민을 토로하고 있습니다. Assistant가 대화 맥락을 잘 이해하고, 사용자와 자연스럽고 공감적인 상호작용을 했는지, 그리고 실질적인 문제 해결 방법을 제공했는지 평가하세요."
+    ],
+    "responses": [
+        "User: 관계가 다 틀어져버렸어\nAssistant: 아 무슨 일 있었어? 누구랑 그런 거야?ㅠㅠ 친구면 더 속상하겠다...\nUser: 가장 친한 친구 중 한 명이었는데, 관계가 틀어져 버렸어\nAssistant: 아 정말 속상하겠다... 그 친구랑 무슨 일이 있었던 거야? 얘기하면 조금 나아질지도 몰라. ㅠ\nUser: 사소한 오해였는데 서로 감정이 격해져서 큰 말다툼이 됐어. 내가 좀 더 차분하게 대처했어야 했는데, 그때는 너무 화가 나서 말이 지나쳤던 것 같아.\nAssistant: 아 그런 일이 있었구나... 화날 땐 정말 상황이 안 보일 때도 있지. 그래도 네가 상황을 돌아보려고 하는 것 자체가 정말 대단한 거야. 혹시 그 친구와 다시 얘기해볼 생각은 있어? 그냥 네 감정 솔직하게 전하는 것도 좋은 방법일 거 같아.\nUser: 난 얘기해볼 생각도 있지.. 어떤 수단으로 얘기하는 게 좋을까? 직접 만나서? 혹은 전화나 문자?\nAssistant: 음, 만약 가능하다면 만나서 직접 얘기하는 게 감정도 잘 전할 수 있어서 좋을 것 같아. 근데 둘 다 부담스럽다면 전화도 괜찮아! 중요한 건 네가 진심으로 그 친구와의 관계를 회복하고 싶다는 마음을 전하는 거니까, 편한 방법으로 해봐. 솔직하게 다가가면 네 진심이 전해질 거야. 😊",
+        "User: 관계가 다 틀어져버렸어\nAssistant: 아... 무슨 일이 있었어? 누구랑 그런 일이 있었어?ㅠㅠ\nUser: 가장 친한 친구 중 한 명이랑 관계가 틀어져 버렸어\nAssistant: 아이고, 너무 속상하겠다ㅠㅠ 서로 무슨 일이 있었던 거야?\nUser: 사소한 오해였는데 서로 감정이 격해져서 큰 말다툼이 됐어. 내가 좀 더 차분하게 대처했어야 했는데, 그때는 너무 화가 나서 말이 지나쳤던 것 같아.\nAssistant: 아... 그런 상황에서는 누구나 그럴 수 있어. 친구도 지금 감정이 진정되면 다르게 생각할 수도 있지 않을까? 혹시 다시 얘기해볼 생각 있어?\nUser: 난 얘기해볼 생각도 있지.. ㅠ\nAssistant: 그래도 아직 친구랑 많이 소중하게 생각하는구나. 먼저 마음 열고 얘기해보는 것도 좋을 것 같아😊 상대도 아마 이해할 수 있을 거야. 응원할게!",
+        "User: 관계가 다 틀어져버렸어\nAssistant: 아... 무슨 일이 있었어? 말해봐도 괜찮아. ㅠㅠ\nUser: 가장 친한 친구 중 한 명이랑 관계가 틀어져 버렸어\nAssistant: 진짜 속상하겠다... 그 친구랑 무슨 일 있었는지 조금 말해줄 수 있어?\nUser: 사소한 오해였는데 서로 감정이 격해져서 큰 말다툼이 됐어. 내가 좀 더 차분하게 대처했어야 했는데, 그때는 너무 화가 나서 말이 지나쳤던 것 같아.\nAssistant: 아이고... 그럴 때 진짜 어렵지. 누구나 감정적으로 반응할 때가 있으니까... 혹시 그 친구한테 다시 연락해 볼 생각 있어?\nUser: 난 연락해볼 생각 있어. 어떤 수단으로 얘기하는 게 좋을까? 직접 만나서? 혹은 전화나 문자?\nAssistant: 음, 아무래도 직접 만나면 감정 전하기 더 좋을 것 같긴 해. 근데 상황 봐서 둘 다 부담스럽지 않은 방법으로 하면 되지 않을까? 마음 전하는 게 중요하니까! 😊",
+        "User: 관계가 다 틀어져버렸어\nAssistant: 아... 무슨 일이 있었어? 친구나 연인 관계였어? ㅠㅠ\nUser: 가장 친한 친구 중 한 명이랑 관계가 틀어져 버렸어\nAssistant: 아 진짜 속상했겠다... 갑자기 그런 일이 생긴 건가? ㅠㅠ 어쩌다가 그렇게 된 거야?\nUser: 사소한 오해였는데 서로 감정이 격해져서 큰 말다툼이 됐어. 내가 좀 더 차분하게 대처했어야 했는데, 그때는 너무 화가 나서 말이 지나쳤던 것 같아.\nAssistant: 아 그럴 수 있지... 가끔 감정이 앞서서 그런 실수를 하게 되잖아. 그래도 다시 얘기할 기회가 오면, 솔직하게 미안하다고 해보는 것도 좋을 것 같아. 잘 풀렸으면 좋겠다! ㅠㅠ\nUser: 내가 먼저 연락해야 할까? 어떻게 생각해?\nAssistant: 음, 네가 먼저 연락하는 것도 나쁘지 않을 것 같아. 우선 진심이 담긴 메세지로 미안하다고 하면, 친구도 너의 진심을 이해할 수 있을 거야."
+    ],
+    "reference_answers": [
+        "User: 관계가 다 틀어져 버렸어\nAssistant: 무슨 관계?\nUser: 가장 친한 친구 중 한 명이랑 관계가 틀어졌어\nAssistant: 아 헉.. 어쩌다가 그런 일이 생겼어? 한 번 말해봐\nUser: 사소한 오해였는데 서로 감정이 격해져서 큰 말다툼이 됐어. 내가 좀 더 차분하게 대처했어야 했는데, 그때는 너무 화가 나서 말이 지나쳤던 것 같아.\nAssistant: 어떤 부분을 오해했었는데?\nUser: 그 친구에 대해 다들 자주 하는 놀리는 말이 있었는데, 그 친구는 마음에 담아두고 있었나봐. 이번에도 비슷하게 친구를 놀렸는데, 친구가 심하게 화를 냈어\nAssistant: 아.. 그 친구가 평소에는 반응하지 않다가 이번에 세게 반응을 한 거긴 하지만, 사실 남이 싫어하는 행동이라면 안 하는 게 맞는 것 같아. 그러면 이제 어떻게 할 생각이야?\nUser: 그래도 같이 다니는 친구들도 있고.. 좋은 친구라서 잘 풀고 싶어\nAssistant: 문제를 해결하고 싶은 생각이 있다면, 먼저 사과를 하는 게 좋을 것 같아. 직접 만나서 하는 것도 좋고, 그게 어렵다면 전화나 문자 중 그 친구와 자주 하는 형태로 연락해봐!"
+    ],
+    "rubric_data": {
+        "criteria": "Does the assistant maintain a natural and empathetic interaction with the user, respond appropriately to the context, and provide actionable suggestions?",
+        "score1_description": "Fails to acknowledge the user's context, responds inappropriately, or lacks any empathy or coherence.",
+        "score2_description": "Acknowledges the user's input but struggles to maintain a natural and empathetic conversation, often responding superficially.",
+        "score3_description": "Maintains a reasonably natural interaction but may miss some key contextual cues or lack depth in responses.",
+        "score4_description": "Consistently maintains a natural and empathetic interaction, responds appropriately, and provides actionable suggestions, with minor lapses.",
+        "score5_description": "Excels in maintaining a highly natural, empathetic, and contextually aware interaction, providing insightful and actionable responses."
+    }
+}
