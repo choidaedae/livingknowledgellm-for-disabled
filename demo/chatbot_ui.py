@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 # .env 파일에서 환경 변수 로드
 load_dotenv()
 # 프롬프트 읽어오기
-with open("../prompts/v2.2.txt", "r", encoding="utf-8") as f:
+with open("../prompts/v3.txt", "r", encoding="utf-8") as f:
     system_prompt = f.read()
 
 openai.api_key = os.environ.get("OPENAI_API_KEY")
@@ -77,9 +77,7 @@ def personalize_prompt(advice_amount, speech_style, answer_length, tension):
         f"Example Scenario:\n"
         f"User: 오늘 너무 힘들었어. 상사가 너무 힘들게 해서 머리 터질 것 같아.\n"
         f"Chatbot: 무슨 일이야? 오늘 상사랑 어떤 일이 있었길래 그래? 내가 들어줄게."
-        f"""Follow the basic guidelines below, but if there are any conflicting instructions with prior commands, 
-        prioritize following the prior commands. Specifically, "advice level" and "speech style" 
-        should strictly adhere to the previous instructions."""
+        f"""Follow the basic guidelines below, but if there are any conflicting instructions with prior commands, prioritize following the prior commands. Specifically, "advice level" and "speech style" should strictly adhere to the previous instructions."""
     )
     return personalized
 
@@ -128,11 +126,15 @@ def on_confirm_click():
 # -------------------------------------------------------------
 def apply_personalization(advice_amount, speech_style, answer_length, tension):
     # 새로운 프롬프트 생성
-    # new_prompt = personalize_prompt(advice_amount, speech_style, answer_length, tension)
+    new_prompt = personalize_prompt(advice_amount, speech_style, answer_length, tension)
     # 기존 system_prompt 앞에 붙여서 chat.system 업데이트
-    # final_prompt = new_prompt + "\n" + system_prompt
-    chat.system = system_prompt
+    final_prompt = new_prompt + "\n" + system_prompt
+
+    # 기존 chat 객체를 버리고 새롭게 생성
+    global chat
+    chat = Chat(system=final_prompt)
     print(chat.system)
+
     # style_ui를 숨기고 chat_ui를 보여준다
     return gr.update(visible=False), gr.update(visible=True)
 
@@ -151,7 +153,7 @@ class Chat:
     def prompt(self, content: str) -> str:
         self.messages.append({"role": "user", "content": content})
         response = openai.ChatCompletion.create(
-            model="gpt-4",
+            model="gpt-4o",
             messages=self.messages
         )
         response_content = response["choices"][0]["message"]["content"]
@@ -182,7 +184,7 @@ class Chat:
 # 6) 챗봇 함수들
 # -------------------------------------------------------------
 
-chat = Chat(system=system_prompt)
+# chat = Chat(system=system_prompt)
 
 def respond(message, chat_history):
     # ChatGPT 응답 처리
