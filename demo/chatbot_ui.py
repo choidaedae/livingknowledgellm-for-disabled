@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 # .env 파일에서 환경 변수 로드
 load_dotenv()
 # 프롬프트 읽어오기
-with open("../prompts/v3.txt", "r", encoding="utf-8") as f:
+with open("prompts/v3.txt", "r", encoding="utf-8") as f:
     system_prompt = f.read()
 
 openai.api_key = os.environ.get("OPENAI_API_KEY")
@@ -188,7 +188,7 @@ class Chat:
 
 def respond(message, chat_history):
     # ChatGPT 응답 처리
-    bot_profile_path = "../assets/bot_profile.png"
+    bot_profile_path = "assets/bot_profile.png"
     with open(bot_profile_path, "rb") as f:
         encoded_image = base64.b64encode(f.read()).decode("utf-8")
 
@@ -202,7 +202,7 @@ def respond(message, chat_history):
     """
 
     # 메시지 기록 업데이트
-    chat_history.append({"role": "user", "content": message, "image": "../assets/user_profile.png"})
+    chat_history.append({"role": "user", "content": message, "image": "assets/user_profile.png"})
     chat_history.append({"role": "assistant", "content": image_html})
 
     return "", chat_history
@@ -219,9 +219,9 @@ def load_chat(file):
     chat_history = []
     for msg in chat.messages:
         if msg["role"] == "user":
-            chat_history.append({"role": "user", "content": msg["content"], "image": "../assets/user_profile.png"})
+            chat_history.append({"role": "user", "content": msg["content"], "image": "assets/user_profile.png"})
         elif msg["role"] == "assistant":
-            chat_history.append({"role": "assistant", "content": msg["content"], "image": "../assets/bot_profile.png"})
+            chat_history.append({"role": "assistant", "content": msg["content"], "image": "assets/bot_profile.png"})
     return chat_history
 
 def clear_chat(chat_history):
@@ -230,11 +230,26 @@ def clear_chat(chat_history):
     return []
 
 # -------------------------------------------------------------
+# 7) [추가] 랜딩 페이지 -> 검사 페이지로 넘어가는 함수
+# -------------------------------------------------------------
+def go_to_test_page():
+    """
+    lp1.jpg가 있는 랜딩 페이지를 숨기고,
+    검사 페이지 탭(test_ui)을 보여줍니다.
+    """
+    return gr.update(visible=False), gr.update(visible=True)
+# -------------------------------------------------------------
 # 7) Gradio UI 구성
 # -------------------------------------------------------------
 with gr.Blocks() as demo:
+    # [추가] 랜딩 페이지
+    with gr.Column(visible=True) as landing_page:  # 처음에 보임
+        # gr.Markdown("## MoodBin에 오신 것을 환영합니다!")        # lp1.jpg 표시
+        gr.Image(value="assets/lp1.jpg", label="Landing Page", show_label=False, width=1000)
+        start_test_btn = gr.Button("검사 시작하기", min_width=200)
+
     # 1) 검사 UI
-    with gr.Tab("CES-D 검사", visible=True) as test_ui:
+    with gr.Tab("CES-D 검사", visible=False) as test_ui:
         gr.Markdown("""### CESD-10-D 우울 척도 검사
 
 아래의 문항을 잘 읽으신 후, 지난 1주 동안 당신이 느끼고 행동한 것을 가장 잘 나타낸다고 생각되는 답변에 표시하여 주십시오. 한 문항도 빠짐없이 답해 주시기 바랍니다. 
@@ -299,6 +314,14 @@ with gr.Blocks() as demo:
 - **청소년 상담 전화**: 1388  
 - **여성 긴급전화**: 1366  
 """)
+    # --------------------------------------------
+    # [추가] 랜딩 페이지 -> 검사 페이지 이동
+    # --------------------------------------------
+    start_test_btn.click(
+        go_to_test_page,
+        inputs=None,
+        outputs=[landing_page, test_ui]
+    )
 
     # --------------------------------------------
     # 연결: 검사 결과 제출 -> 결과 표시 -> 확인 버튼 누르면 스타일 탭 표시
